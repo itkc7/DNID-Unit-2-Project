@@ -71,17 +71,17 @@ public class PlayerMovement : MonoBehaviour
             gameOverImage.SetActive(true);
         }
 
-        if (collision.gameObject.CompareTag("Item"))
-        {
-            gameWonImage.SetActive(true);  // Das UI-Element anzeigen
-        }
+        //if (collision.gameObject.CompareTag("Item"))
+        //{
+        //    gameWonImage.SetActive(true);  // Das UI-Element anzeigen
+        //}
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+   /* private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Item"))
         {
             gameWonImage.SetActive(true);  // Das UI-Element anzeigen
         }
-    }
+    }*/
 }

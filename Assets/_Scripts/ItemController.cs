@@ -20,6 +20,8 @@ public class ItemController : MonoBehaviour
     public delegate void OnItemCollectedDelegate(int currentCount, int required);
     public static event OnItemCollectedDelegate OnItemCollected;
 
+    public GameObject gameWonImage;
+
     void Start()
     {
         // Reset static variables if this is the first item instance
@@ -31,10 +33,9 @@ public class ItemController : MonoBehaviour
 
         // Ensure the item starts active but in a random position
         RepositionItem();
-        gameObject.SetActive(true);
 
         // Start spawning routine for subsequent positions
-        StartCoroutine(SpawnRoutine());
+        //StartCoroutine(SpawnRoutine());
 
         // Debug log to verify the script is running
         Debug.Log("ItemController started on: " + gameObject.name);
@@ -47,9 +48,9 @@ public class ItemController : MonoBehaviour
             Random.Range(spawnAreaMin.y, spawnAreaMax.y)
         );
         transform.position = randomPosition;
-        Debug.Log($"Item repositioned to: {randomPosition}"); // Debug log
     }
 
+    /*
     private IEnumerator SpawnRoutine()
     {
         Debug.Log("SpawnRoutine started"); // Debug log
@@ -62,18 +63,18 @@ public class ItemController : MonoBehaviour
 
             if (!isCollected && !isGameComplete)
             {
-                Debug.Log("Attempting to spawn item"); // Debug log
                 RepositionItem();
                 gameObject.SetActive(true);
             }
         }
     }
+    */
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log($"Trigger entered by: {other.gameObject.name}"); // Debug log
 
-        if (other.CompareTag("Player") && !isCollected && !isGameComplete)
+        if (other.gameObject.CompareTag("Player"))
         {
             CollectItem();
         }
@@ -81,18 +82,21 @@ public class ItemController : MonoBehaviour
 
     private void CollectItem()
     {
-        isCollected = true;
-        gameObject.SetActive(false);
+        //isCollected = true;
+        //gameObject.SetActive(false);
 
         collectedItems++;
-        OnItemCollected?.Invoke(collectedItems, requiredItems);
+        //OnItemCollected?.Invoke(collectedItems, requiredItems);
 
-        Debug.Log($"Item collected! Total: {collectedItems}/{requiredItems}"); // Debug log
+        Debug.Log($"Item collected! Total: {collectedItems}/{requiredItems}");
+        RepositionItem();
+
 
         if (collectedItems >= requiredItems)
         {
             isGameComplete = true;
             Debug.Log("All items collected! Level complete!");
+            gameWonImage.SetActive(true);
         }
     }
 
