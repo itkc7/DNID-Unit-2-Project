@@ -4,76 +4,43 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [Header("Spawn Settings")]
-    [SerializeField] private float minSpawnDelay = 2f;
-    [SerializeField] private float maxSpawnDelay = 5f;
-    [SerializeField] private Vector2 spawnAreaMin = new Vector2(-8f, -4f);
-    [SerializeField] private Vector2 spawnAreaMax = new Vector2(8f, 4f);
+    public float minSpawnDelay = 2f;
+    public float maxSpawnDelay = 5f;
 
-    [Header("Collection Settings")]
-    [SerializeField] private int requiredItems = 3;
+    public int requiredItems = 3;
 
     private static int collectedItems = 0;
     private static bool isGameComplete = false;
-    private bool isCollected = false;
-
-    public delegate void OnItemCollectedDelegate(int currentCount, int required);
-    public static event OnItemCollectedDelegate OnItemCollected;
 
     public GameObject gameWonImage;
 
+    public PlatformManager platformManager;
+
     void Start()
     {
-        // Reset static variables if this is the first item instance
-        if (GameObject.FindObjectsOfType<ItemController>().Length == 1)
-        {
-            collectedItems = 0;
-            isGameComplete = false;
-        }
+        GetComponent<Renderer>().enabled = false;
+        StartCoroutine(RepositionItem());
 
-        // Ensure the item starts active but in a random position
-        RepositionItem();
-
-        // Start spawning routine for subsequent positions
-        //StartCoroutine(SpawnRoutine());
-
-        // Debug log to verify the script is running
-        Debug.Log("ItemController started on: " + gameObject.name);
     }
 
-    private void RepositionItem()
+    private IEnumerator RepositionItem()
     {
-        Vector2 randomPosition = new Vector2(
-            Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-            Random.Range(spawnAreaMin.y, spawnAreaMax.y)
-        );
-        transform.position = randomPosition;
-    }
 
-    /*
-    private IEnumerator SpawnRoutine()
-    {
-        Debug.Log("SpawnRoutine started"); // Debug log
+        float waitTime = Random.Range(minSpawnDelay, maxSpawnDelay);
+        yield return new WaitForSeconds(waitTime);
 
-        while (!isGameComplete && !isCollected)
+        Vector2 spawnPosition = platformManager.GetRandomActivePlatformPosition();
+        Debug.Log(spawnPosition);
+        if (spawnPosition != Vector2.zero)
         {
-            // Wait for random delay
-            float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
-            yield return new WaitForSeconds(delay);
-
-            if (!isCollected && !isGameComplete)
-            {
-                RepositionItem();
-                gameObject.SetActive(true);
-            }
+            spawnPosition.y += 0.3f;
+            transform.position = spawnPosition;
         }
+        GetComponent<Renderer>().enabled = true;
     }
-    */
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Trigger entered by: {other.gameObject.name}"); // Debug log
-
         if (other.gameObject.CompareTag("Player"))
         {
             CollectItem();
@@ -82,14 +49,12 @@ public class ItemController : MonoBehaviour
 
     private void CollectItem()
     {
-        //isCollected = true;
-        //gameObject.SetActive(false);
 
         collectedItems++;
-        //OnItemCollected?.Invoke(collectedItems, requiredItems);
 
         Debug.Log($"Item collected! Total: {collectedItems}/{requiredItems}");
-        RepositionItem();
+        GetComponent<Renderer>().enabled = false;
+        StartCoroutine(RepositionItem());
 
 
         if (collectedItems >= requiredItems)
@@ -99,5 +64,4 @@ public class ItemController : MonoBehaviour
             gameWonImage.SetActive(true);
         }
     }
-
 }
