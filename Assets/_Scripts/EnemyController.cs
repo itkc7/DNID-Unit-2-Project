@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float minSpeed = 2f;  // Minimale Geschwindigkeit des Enemies
-    public float maxSpeed = 5f;  // Maximale Geschwindigkeit des Enemies
+    public float minSpeed = 2f;      // Minimale Geschwindigkeit des Enemies
+    public float maxSpeed = 5f;      // Maximale Geschwindigkeit des Enemies
     public float minPauseTime = 1f;  // Minimale Zeit, die der Enemy steht
     public float maxPauseTime = 3f;  // Maximale Zeit, die der Enemy steht
     public float minMoveTime = 1f;   // Minimale Zeit der Bewegung
@@ -20,11 +20,13 @@ public class EnemyMovement : MonoBehaviour
     private float screenRightLimit;
 
     private Rigidbody2D rb;
+    private Transform enemyTransform;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemyTransform = transform;
 
         // Bildschirmgrenzen berechnen
         float distanceToCamera = transform.position.z - Camera.main.transform.position.z;
@@ -49,7 +51,17 @@ public class EnemyMovement : MonoBehaviour
 
             // Zufällige Bewegungsrichtung auf der X-Achse (-1 für links, 1 für rechts)
             float directionX = Random.Range(-1f, 1f) >= 0 ? 1f : -1f;
-            moveDirection = new Vector2(directionX, 0).normalized; // Y bleibt 0, nur X bewegt sich
+            moveDirection = new Vector2(directionX, 0).normalized;
+
+            // Update der Richtung: Wenn sich der Enemy nach links bewegt, invertiere die x-Skalierung
+            if (moveDirection.x < 0)
+            {
+                enemyTransform.localScale = new Vector3(1, 1, 1); // Dreht den Enemy nach links
+            }
+            else
+            {
+                enemyTransform.localScale = new Vector3(-1, 1, 1);  // Dreht den Enemy nach rechts
+            }
 
             isMoving = true;
             yield return new WaitForSeconds(moveDuration);

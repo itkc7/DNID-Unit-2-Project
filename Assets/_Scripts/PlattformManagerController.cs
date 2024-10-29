@@ -7,27 +7,30 @@ public class PlatformManager : MonoBehaviour
     public GameObject[] platforms;
     private List<GameObject> activePlatforms = new List<GameObject>();
 
-    // Public variable to set the number of active platforms
-    public int numberOfActivePlatforms = 3;
+    public int numberOfActivePlatforms = 2;
+
+    public float spawnRadius = 5f;
+
+    public float platformCooldown = 1.3f;
+    private Dictionary<GameObject, float> cooldownTimers = new Dictionary<GameObject, float>();
 
     private void Start()
     {
-        // Initialize the active platforms list
         InitializeActivePlatforms();
-
-        Debug.Log("Count: " + activePlatforms.Count);
     }
 
     private void InitializeActivePlatforms()
     {
-        // Ensure we don't exceed the number of available platforms
-        int platformsToActivate = Mathf.Min(numberOfActivePlatforms, platforms.Length);
-
-        for (int i = 0; i < platformsToActivate; i++)
+        foreach (GameObject platform in platforms)
         {
-            GameObject platform = platforms[i];
-            platform.SetActive(true);
-            activePlatforms.Add(platform);
+            if (platform.activeSelf) 
+            {
+                activePlatforms.Add(platform);
+            }
+            if (!cooldownTimers.ContainsKey(platform))
+            {
+                cooldownTimers[platform] = 0f;
+            }
         }
     }
 
@@ -39,68 +42,66 @@ public class PlatformManager : MonoBehaviour
             return;
         }
 
-        // Start the coroutine for delay and shake effect
+        if (Time.time < cooldownTimers[currentPlatform])
+        {
+            Debug.Log("Platform on cooldown.");
+            return;
+        }
+
+        cooldownTimers[currentPlatform] = Time.time + platformCooldown;
         StartCoroutine(DelayAndShake(currentPlatform));
     }
 
     private IEnumerator DelayAndShake(GameObject platform)
     {
-        // Wait for 2 seconds
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(platformCooldown);
 
-        // Shake the platform for 0.5 seconds
         Vector3 originalPosition = platform.transform.position;
         float shakeDuration = 0.8f;
         float shakeMagnitude = 0.1f;
 
-        GameObject Platfromtrigger = platform.transform.GetChild(1).gameObject;
-        //bool isPlayerOnPlatform = Physics.CheckBox(Platfromtrigger.transform.position, Platfromtrigger.GetComponent<Collider>().bounds.extents, Quaternion.identity, LayerMask.GetMask("Player"));
-        if (true)
+        while (shakeDuration > 0)
         {
-
-            while (shakeDuration > 0)
-            {
-                platform.transform.position = originalPosition + (Vector3)Random.insideUnitCircle * shakeMagnitude;
-                shakeDuration -= Time.deltaTime;
-                yield return null;
-            }
-
-            // Reset the platform back to its original position
-            platform.transform.position = originalPosition;
-
-        
-            // Deactivate the platform and activate a new platform
-            platform.SetActive(false);
-            activePlatforms.Remove(platform);
-
-            ActivateRandomPlatform(platform);
-
+            platform.transform.position = originalPosition + (Vector3)Random.insideUnitCircle * shakeMagnitude;
+            shakeDuration -= Time.deltaTime;
+            yield return null;
         }
+
+        platform.transform.position = originalPosition;
+        platform.SetActive(false);
+        activePlatforms.Remove(platform);
+
+        ActivateRandomPlatform(platform, platform.transform.position);
     }
 
-    private void ActivateRandomPlatform(GameObject currentPlatform)
+    private void ActivateRandomPlatform(GameObject currentPlatform, Vector3 targetPosition)
     {
+        Debug.Log("ActivateRandomPlatform");
+
         GameObject newPlatform;
+        int attempts = 0; // Sicherheitsschleife, um eine Endlosschleife zu vermeiden
         do
         {
             newPlatform = platforms[Random.Range(0, platforms.Length)];
-        } while (newPlatform == currentPlatform || activePlatforms.Contains(newPlatform));
+            attempts++;
+        }
+        while ((newPlatform == currentPlatform || activePlatforms.Contains(newPlatform) ||
+               Vector3.Distance(newPlatform.transform.position, targetPosition) > spawnRadius)
+               && attempts < 10);
 
-        // Add the new platform to the active platforms
+        if (attempts >= 10)
+        {
+            Debug.LogWarning("Could not find a new platform to activate within the radius!");
+            return;
+        }
+
         activePlatforms.Add(newPlatform);
         newPlatform.SetActive(true);
 
-        // Ensure the number of active platforms does not exceed the limit
-        if (activePlatforms.Count > numberOfActivePlatforms)
-        {
-            // Deactivate the extra platform if needed
-            GameObject extraPlatform = activePlatforms[0]; // Get the first platform in the list
-            activePlatforms.RemoveAt(0); // Remove it from the active list
-            extraPlatform.SetActive(false); // Deactivate it
-        }
+        // Setze Cooldown zurück
+        cooldownTimers[newPlatform] = Time.time + platformCooldown;
     }
 
-    // Method to get a random position from active platforms
     public Vector2 GetRandomActivePlatformPosition()
     {
         if (activePlatforms.Count == 0)
@@ -111,12 +112,10 @@ public class PlatformManager : MonoBehaviour
 
         GameObject randomPlatform = activePlatforms[Random.Range(0, activePlatforms.Count)];
 
-        // Search for the child named "Plattform 1"
         GameObject childPlatform = randomPlatform.transform.GetChild(0).gameObject;
 
         if (childPlatform != null)
         {
-            // Return the position of the child
             return childPlatform.transform.position;
         }
         else
@@ -124,5 +123,15 @@ public class PlatformManager : MonoBehaviour
             Debug.LogWarning("Child object 'Plattform 1' not found in " + randomPlatform.name);
             return Vector2.zero;
         }
+    }
+
+    private void printList()
+    {
+        string log = "";
+        foreach (GameObject platform in activePlatforms)
+        {
+            log += platform.name + ", ";
+        }
+        Debug.Log("Active Platforms: " + log.TrimEnd(',', ' '));
     }
 }
