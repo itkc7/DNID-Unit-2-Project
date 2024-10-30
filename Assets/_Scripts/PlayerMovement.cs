@@ -54,6 +54,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
         }
+
+        if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-0.4256694f, 0.4256694f, 0.4256694f); // Dreht den Enemy nach links
+        }
+        else
+        {
+            transform.localScale = new Vector3(0.4256694f, 0.4256694f, 0.4256694f);  // Dreht den Enemy nach rechts
+        }
     }
 
     // Auf dem Boden landen

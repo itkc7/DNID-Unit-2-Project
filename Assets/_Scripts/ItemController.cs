@@ -18,6 +18,8 @@ public class ItemController : MonoBehaviour
 
     public PlatformManager platformManager;
 
+    public AudioSource collectSound;
+
     void Start()
     {
         GetComponent<Renderer>().enabled = false;
@@ -55,9 +57,16 @@ public class ItemController : MonoBehaviour
 
         collectedItems++;
 
+        if (collectSound != null)
+        {
+            collectSound.Play();
+        }
+
         Debug.Log($"Item collected! Total: {collectedItems}/{requiredItems}");
         GetComponent<Renderer>().enabled = false;
         StartCoroutine(RepositionItem());
+
+
 
 
         if (collectedItems >= requiredItems)
