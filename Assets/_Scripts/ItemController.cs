@@ -9,10 +9,12 @@ public class ItemController : MonoBehaviour
 
     public int requiredItems = 3;
 
-    private static int collectedItems = 0;
+    public int collectedItems = 0;
     private static bool isGameComplete = false;
 
     public GameObject gameWonImage;
+
+    public ItemCollectUI ui;
 
     public PlatformManager platformManager;
 
@@ -44,6 +46,7 @@ public class ItemController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             CollectItem();
+            ui.updateUI();
         }
     }
 
