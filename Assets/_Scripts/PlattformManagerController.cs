@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlatformManager : MonoBehaviour
 {
@@ -9,13 +10,26 @@ public class PlatformManager : MonoBehaviour
 
     public int numberOfActivePlatforms = 2;
 
-    public float spawnRadius = 5f;
+    public float spawnRadius = 3f;
 
     public float platformCooldown = 1.3f;
     private Dictionary<GameObject, float> cooldownTimers = new Dictionary<GameObject, float>();
 
     private void Start()
     {
+        if(SceneManager.GetActiveScene().name == "Level 2")
+        {
+            platformCooldown *= .8f;
+        }
+        if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            platformCooldown *= .65f;
+        }
+        if (SceneManager.GetActiveScene().name == "Level 4")
+        {
+            platformCooldown *= .45f;
+        }
+
         InitializeActivePlatforms();
     }
 
@@ -87,7 +101,7 @@ public class PlatformManager : MonoBehaviour
         }
         while ((newPlatform == currentPlatform || activePlatforms.Contains(newPlatform) ||
                Vector3.Distance(newPlatform.transform.position, targetPosition) > spawnRadius)
-               && attempts < 10);
+               && attempts < 15);
 
         if (attempts >= 10)
         {

@@ -876,8 +876,6 @@ GameObject:
   - component: {fileID: 158932929}
   - component: {fileID: 158932928}
   - component: {fileID: 158932927}
-  - component: {fileID: 158932931}
-  - component: {fileID: 158932930}
   m_Layer: 5
   m_Name: Game_won_image
   m_TagString: Untagged
@@ -956,46 +954,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158932925}
   m_CullTransparentMesh: 1
---- !u!114 &158932930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158932925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!223 &158932931
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158932925}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &196904134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1012,7 @@ SpriteRenderer:
   m_SortingLayerID: -1882263321
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3589fa6d1c1c24c1e91f3c84a5f8cdd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33aa57facab0e448bb1e2c83b0bb5ade, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1074,8 +1032,8 @@ Transform:
   m_GameObject: {fileID: 196904134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0139, y: 0.39, z: 0}
-  m_LocalScale: {x: 2.8952894, y: 2.8952894, z: 2.8952894}
+  m_LocalPosition: {x: -0.0199, y: 0.3866, z: 0}
+  m_LocalScale: {x: 0.7625533, y: 0.7625533, z: 0.7625533}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2664,9 +2622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bac5b33404cf4827813554fcb6ecd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDelay: 15
-  maxSpawnDelay: 30
-  requiredItems: 1
+  minSpawnDelay: 30
+  maxSpawnDelay: 45
+  requiredItems: 5
   collectedItems: 0
   gameWonImage: {fileID: 158932925}
   ui: {fileID: 896412426}
@@ -4089,6 +4047,8 @@ GameObject:
   - component: {fileID: 903353951}
   - component: {fileID: 903353953}
   - component: {fileID: 903353952}
+  - component: {fileID: 903353955}
+  - component: {fileID: 903353954}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -4157,6 +4117,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903353950}
   m_CullTransparentMesh: 1
+--- !u!114 &903353954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903353950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &903353955
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903353950}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &923590220
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,7 +5014,7 @@ SpriteRenderer:
   m_SortingLayerID: -1229105361
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7dbbf05fcafd14c7ba75543bb328fa65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6377ee50f28a44f593ca31478a2d251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5034,8 +5034,8 @@ Transform:
   m_GameObject: {fileID: 1385654725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5491, y: -4.02, z: 0}
-  m_LocalScale: {x: 0.4256694, y: 0.4256694, z: 0.4256694}
+  m_LocalPosition: {x: -5.3, y: -3.44, z: 0}
+  m_LocalScale: {x: 0.15711448, y: 0.15711448, z: 0.15711448}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5103,14 +5103,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.19, y: 3.15}
+    oldSize: {x: 24.711979, y: 17.810001}
     newSize: {x: 5.19, y: 3.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.19, y: 3.15}
+  m_Size: {x: 22.65, y: 16.88}
   m_EdgeRadius: 0
 --- !u!114 &1385654730
 MonoBehaviour:
@@ -5976,7 +5976,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 386179480}
         m_TargetAssemblyTypeName: SceneManagerUI, Assembly-CSharp
-        m_MethodName: startLevel1
+        m_MethodName: startLevel4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6389,19 +6389,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1808760008}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 386179480}
-        m_TargetAssemblyTypeName: SceneManagerUI, Assembly-CSharp
-        m_MethodName: startLevel2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1808760008
 MonoBehaviour:
   m_ObjectHideFlags: 0

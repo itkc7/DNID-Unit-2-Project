@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ItemController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         GetComponent<Renderer>().enabled = false;
         StartCoroutine(RepositionItem());
 
@@ -74,6 +76,7 @@ public class ItemController : MonoBehaviour
             isGameComplete = true;
             Debug.Log("All items collected! Level complete!");
             gameWonImage.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }

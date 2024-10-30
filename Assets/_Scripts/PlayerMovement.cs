@@ -55,14 +55,17 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
+        Vector3 currentScale = transform.localScale;
+
         if (rb.velocity.x < 0)
         {
-            transform.localScale = new Vector3(-0.4256694f, 0.4256694f, 0.4256694f); // Dreht den Enemy nach links
+            transform.localScale = new Vector3(-Mathf.Abs(currentScale.x), currentScale.y, currentScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(0.4256694f, 0.4256694f, 0.4256694f);  // Dreht den Enemy nach rechts
+            transform.localScale = new Vector3(Mathf.Abs(currentScale.x), currentScale.y, currentScale.z);
         }
+
     }
 
     // Auf dem Boden landen

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -25,6 +26,30 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(SceneManager.GetActiveScene().name == "Level 2")
+        {
+            Debug.Log("Level 2");
+            minSpeed *= 1.8f;
+            maxSpeed *= 1.8f;
+            maxPauseTime *= .6f;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            Debug.Log("Level 3");
+            minSpeed *= 2f;
+            maxSpeed *= 2f;
+            maxPauseTime *= .5f;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Level 4")
+        {
+            Debug.Log("Level 4");
+            minSpeed *= 2.2f;
+            maxSpeed *= 2.2f;
+            maxPauseTime *= .6f;
+        }
+
         rb = GetComponent<Rigidbody2D>();
         enemyTransform = transform;
 
