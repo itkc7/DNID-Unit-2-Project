@@ -66,6 +66,7 @@ public class ItemController : MonoBehaviour
 
         Debug.Log($"Item collected! Total: {collectedItems}/{requiredItems}");
         GetComponent<Renderer>().enabled = false;
+        transform.position = new Vector3(-11.83f, -3.57f, 0);
         StartCoroutine(RepositionItem());
 
 

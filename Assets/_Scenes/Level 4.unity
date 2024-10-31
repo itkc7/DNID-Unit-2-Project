@@ -1033,8 +1033,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0199, y: 0.3866, z: 0}
-  m_LocalScale: {x: 0.7625533, y: 0.7625533, z: 0.7625533}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.67676604, y: 0.67676604, z: 0.67676604}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1593,7 +1593,7 @@ Transform:
   m_GameObject: {fileID: 469555719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.02, y: -1.35, z: -0.00090130867}
+  m_LocalPosition: {x: -8.02, y: 1.25, z: -0.00090130867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2622,9 +2622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bac5b33404cf4827813554fcb6ecd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDelay: 30
-  maxSpawnDelay: 45
-  requiredItems: 5
+  minSpawnDelay: 15
+  maxSpawnDelay: 35
+  requiredItems: 4
   collectedItems: 0
   gameWonImage: {fileID: 158932925}
   ui: {fileID: 896412426}
@@ -4561,7 +4561,7 @@ Transform:
   m_GameObject: {fileID: 1213944156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: -0.28, z: 0}
   m_LocalScale: {x: 0.59296876, y: 0.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5034,9 +5034,9 @@ Transform:
   m_GameObject: {fileID: 1385654725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.3, y: -3.44, z: 0}
-  m_LocalScale: {x: 0.15711448, y: 0.15711448, z: 0.15711448}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -1.48, y: 3.3, z: 0}
+  m_LocalScale: {x: 0.12372766, y: 0.12372766, z: 0.12372766}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5124,8 +5124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b23e4107294562a11c80c1af545ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  jumpForce: 8.54
+  speed: 5
+  jumpForce: 6.1
   gameOverImage: {fileID: 1791694180}
   gameWonImage: {fileID: 158932925}
 --- !u!1 &1569330596
@@ -5287,7 +5287,7 @@ MonoBehaviour:
   - {fileID: 1569330596}
   numberOfActivePlatforms: 2
   spawnRadius: 7
-  platformCooldown: 2
+  platformCooldown: 1.6
 --- !u!1 &1675290260
 GameObject:
   m_ObjectHideFlags: 0

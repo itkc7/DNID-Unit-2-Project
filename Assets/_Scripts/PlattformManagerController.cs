@@ -10,7 +10,7 @@ public class PlatformManager : MonoBehaviour
 
     public int numberOfActivePlatforms = 2;
 
-    public float spawnRadius = 3f;
+    public float spawnRadius = (8.13f/2);
 
     public float platformCooldown = 1.3f;
     private Dictionary<GameObject, float> cooldownTimers = new Dictionary<GameObject, float>();

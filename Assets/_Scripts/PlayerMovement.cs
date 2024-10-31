@@ -5,7 +5,7 @@ using UnityEngine.UI;  // Für den Zugriff auf UI-Elemente
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 3f;
     public float jumpForce = 10f;
 
     private float moveInput;
