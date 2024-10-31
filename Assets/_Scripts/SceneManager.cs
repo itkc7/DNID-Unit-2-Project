@@ -39,4 +39,20 @@ public class SceneManagerUI : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("Level 4");
     }
+
+
+    public void restartGame()
+    {
+        SceneManager.LoadSceneAsync("Start_Menu");
+    }
+
+    public void endScreen()
+    {
+        SceneManager.LoadSceneAsync("End_Screen");
+    }
+
+    void doExitGame()
+    {
+        Application.Quit();
+    }
 }
