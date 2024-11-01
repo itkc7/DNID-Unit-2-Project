@@ -13,4 +13,13 @@ of the use of arrow keys (left and right) to move back and forth, and the space 
 
 Most of our ideation and prototyping came from our preliminary design document (linked above) from our initial assignment for this project. We began to get our art style for the game
 as we used AI to develop our sprites and level backgrounds. Furthermore, as mere extremely primitive inspiration, we also very briefly consulted the code we had used in class in the 
-Mad Bomber example. 
+Mad Bomber example.
+
+## Suggestions for the future
+
+
+
+## References
+-Grafics: [Adobe Firefly(https://firefly.adobe.com/inspire/images)]
+
+
