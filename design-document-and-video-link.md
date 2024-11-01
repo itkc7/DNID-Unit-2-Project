@@ -16,10 +16,13 @@ as we used AI to develop our sprites and level backgrounds. Furthermore, as mere
 Mad Bomber example.
 
 ## Suggestions for the future
-
+In the future, animating the characters should be a top priority. Adding movement to each character would bring the game to life and make the gameplay experience much more immersive. In addition, the platforming mechanics should be further developed. This would include technical tweaks, such as making sure platforms don't spawn directly on top of each other and maintaining a minimum distance between them. Expanding the mechanics could also mean introducing different types of platforms with unique properties, or varying the amount of time each platform remains active. For added challenge, it might be interesting to have the robber climb onto certain platforms, creating more direct interaction between the robber and the animals. This would intensify the gameplay and reduce the distance between the robber and the player's character, increasing the tension in each level.
 
 
 ## References
--Grafics: [Adobe Firefly(https://firefly.adobe.com/inspire/images)]
+- Grafics: [Adobe Firefly](https://firefly.adobe.com/inspire/images)
+- Grafics: [Adobe Creative Cloud](https://www.adobe.com/products/photoshop.html)
+- Audio & Musik: [Pixelbay](https://pixabay.com/de/)
+- Uity: (https://docs.unity.com/)
 
 
